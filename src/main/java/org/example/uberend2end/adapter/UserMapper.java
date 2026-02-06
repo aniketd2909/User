@@ -1,12 +1,11 @@
 package org.example.uberend2end.adapter;
 
+import org.example.uberend2end.dtos.RegisterUserDTO;
 import org.example.uberend2end.dtos.UserDTO;
 import org.example.uberend2end.dtos.UserRequestDTO;
 import org.example.uberend2end.dtos.UserResponseDTO;
 import org.example.uberend2end.entities.User;
-import org.springframework.stereotype.Component;
 
-@Component
 public class UserMapper {
 
     public static User toEntity(UserDTO userDTO) {
@@ -36,6 +35,15 @@ public class UserMapper {
                 .name(user.getName())
                 .email(user.getEmail())
                 .updatedAt(user.getUpdatedAt())
+                .build();
+    }
+
+    public static UserDTO toUserDTO(RegisterUserDTO registerUserDTO) {
+        return UserDTO.builder()
+                .name(registerUserDTO.getName())
+                .email(registerUserDTO.getEmail())
+                .phoneNumber(registerUserDTO.getPhoneNumber())
+                .password(registerUserDTO.getPassword())
                 .build();
     }
 
