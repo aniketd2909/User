@@ -19,5 +19,4 @@ public class Driver extends BaseEntity {
 
     private String vehicleId;
 
-
 }
