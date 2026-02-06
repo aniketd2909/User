@@ -17,6 +17,8 @@ public class UserResponseDTO {
 
     private String email;
 
+    private String id;
+
     private LocalDateTime lastModifiedDate;
 
 }

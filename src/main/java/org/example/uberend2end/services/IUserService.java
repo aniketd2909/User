@@ -8,6 +8,8 @@ public interface IUserService {
 
     UserDTO registerUser(UserDTO userDTO); // This method registers a new user.
 
-    List<User> getAllUsers();
+    List<UserDTO> getAllUsers();
+
+    UserDTO getUserById(String id);
 
 }

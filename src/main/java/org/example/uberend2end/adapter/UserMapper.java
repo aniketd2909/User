@@ -18,6 +18,7 @@ public class UserMapper {
     public static UserResponseDTO toUserResponseDTO(UserDTO userDTO) {
         return UserResponseDTO.builder()
                 .name(userDTO.getName())
+                .id(userDTO.getId())
                 .email(userDTO.getEmail())
                 .lastModifiedDate(userDTO.getUpdatedAt())
                 .build();
@@ -34,6 +35,7 @@ public class UserMapper {
         return UserDTO.builder()
                 .name(user.getName())
                 .email(user.getEmail())
+                .id(user.getId())
                 .updatedAt(user.getUpdatedAt())
                 .build();
     }
