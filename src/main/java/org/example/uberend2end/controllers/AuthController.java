@@ -8,6 +8,7 @@ import org.example.uberend2end.dtos.RegisterUserDTO;
 import org.example.uberend2end.dtos.UserDTO;
 import org.example.uberend2end.dtos.UserResponseDTO;
 import org.example.uberend2end.services.implementation.RegisterService;
+import org.example.uberend2end.services.implementation.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final RegisterService registerService;
+    private final UserService userService;
 
     @PostMapping("/login")
             public ResponseEntity<?> loginUser(LoginUserDTO loginUserDTO) {
@@ -31,7 +33,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> registerUser(@RequestBody RegisterUserDTO registerUserDTO) {
         log.info("Registering user with email: {}", registerUserDTO.getEmail());
-        UserDTO userDTO = registerService.registerUser(UserMapper.toUserDTO(registerUserDTO));
+        UserDTO userDTO = userService.registerUser(UserMapper.toUserDTO(registerUserDTO));
         return ResponseEntity.ok(UserMapper.toUserResponseDTO(userDTO));
 
     }
