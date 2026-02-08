@@ -2,6 +2,7 @@ package org.example.uberend2end.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,5 +19,7 @@ public class Driver extends BaseEntity {
     private Boolean available;
 
     private String vehicleId;
+
+    private GeoJsonPoint currentLocation;
 
 }

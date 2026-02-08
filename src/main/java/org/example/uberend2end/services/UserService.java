@@ -47,7 +47,6 @@ public class UserService implements IUserService {
         UserDTO userDTO = UserMapper.toUserDTO(userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found")));
         // Cache user in Redis
         redisTemplate.opsForValue().set(USER_KEY_PREFIX + id, objectMapper.writeValueAsString(userDTO), USER_CACHE_TTL, TimeUnit.MINUTES);
-
         return userDTO;
     }
 

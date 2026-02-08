@@ -27,6 +27,4 @@ public class User extends BaseEntity {
 
     private Role role; // This is the role of the user, e.g., DRIVER, RIDER, ADMIN
 
-    private GeoJsonPoint currentLocation;
-
 }
