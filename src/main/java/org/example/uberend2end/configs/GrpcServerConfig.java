@@ -3,8 +3,7 @@ package org.example.uberend2end.configs;
 import io.grpc.ServerBuilder;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.example.uberend2end.services.RideService;
-import org.example.uberend2end.services.UserService;
+import org.example.uberend2end.services.implementation.RideService;
 import org.springframework.context.annotation.Configuration;
 import io.grpc.Server;
 

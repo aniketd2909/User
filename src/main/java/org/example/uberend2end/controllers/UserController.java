@@ -3,12 +3,8 @@ package org.example.uberend2end.controllers;
 import lombok.RequiredArgsConstructor;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.uberend2end.adapter.UserMapper;
 import org.example.uberend2end.dtos.UserDTO;
-import org.example.uberend2end.dtos.UserRequestDTO;
-import org.example.uberend2end.dtos.UserResponseDTO;
-import org.example.uberend2end.entities.User;
-import org.example.uberend2end.services.UserService;
+import org.example.uberend2end.services.implementation.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

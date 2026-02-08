@@ -1,4 +1,4 @@
-package org.example.uberend2end.services;
+package org.example.uberend2end.services.implementation;
 
 import com.example.Uber.RideAcceptanceRequest;
 import com.example.Uber.RideAcceptanceResponse;

@@ -1,12 +1,10 @@
 package org.example.uberend2end.repositories;
 
-import org.example.uberend2end.entities.User;
+import org.example.uberend2end.entities.Driver;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RegisterRepository extends MongoRepository<User, String> {
-
-    boolean existsByEmail(String email);
+public interface DriverRepository extends MongoRepository<Driver,String> {
 
 }

@@ -1,14 +1,16 @@
 package org.example.uberend2end.entities;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "passengers")
-public class Passenger extends  BaseEntity {
+@Getter
+@Setter
+public class Passenger extends BaseEntity {
 
-    @DBRef
-    private User user; // Reference to the User entity
+    private String userId; // Decoupled reference to User ID
 
     private Double rating;
 

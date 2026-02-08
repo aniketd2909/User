@@ -1,7 +1,8 @@
-package org.example.uberend2end.services;
+package org.example.uberend2end.services.implementation;
 
 import lombok.RequiredArgsConstructor;
 import org.example.uberend2end.entities.Booking;
+import org.example.uberend2end.services.IBookingService;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package org.example.uberend2end.services;
+package org.example.uberend2end.services.implementation;
 
 import lombok.RequiredArgsConstructor;
 import org.example.uberend2end.adapter.UserMapper;
@@ -6,6 +6,7 @@ import org.example.uberend2end.dtos.UserDTO;
 import org.example.uberend2end.entities.User;
 import org.example.uberend2end.exceptions.UserAlreadyPresentException;
 import org.example.uberend2end.repositories.RegisterRepository;
+import org.example.uberend2end.services.IRegisterService;
 import org.springframework.stereotype.Service;
 
 @Service

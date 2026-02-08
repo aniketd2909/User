@@ -2,7 +2,7 @@ package org.example.uberend2end.entities;
 
 public enum Role {
 
-    RIDER,
+    PASSENGER,
     DRIVER,
     ADMIN
 

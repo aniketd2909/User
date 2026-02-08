@@ -3,7 +3,6 @@ package org.example.uberend2end.entities;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "drivers")
@@ -11,8 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 public class Driver extends BaseEntity {
 
-    @DBRef
-    private User user;
+    private String userId; // Decoupled reference to User ID
 
     private Double rating;
 

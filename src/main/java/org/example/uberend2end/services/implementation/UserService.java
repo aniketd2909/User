@@ -1,4 +1,4 @@
-package org.example.uberend2end.services;
+package org.example.uberend2end.services.implementation;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -6,6 +6,8 @@ import org.example.uberend2end.adapter.UserMapper;
 import org.example.uberend2end.dtos.UserDTO;
 import org.example.uberend2end.entities.User;
 import org.example.uberend2end.repositories.UserRepository;
+import org.example.uberend2end.services.IUserService;
+import org.example.uberend2end.services.onboarding.UserProfileFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
@@ -19,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class UserService implements IUserService {
 
     private final UserRepository userRepository;
+    private final UserProfileFactory userProfileFactory; // Replaces DriverService
     private final RedisTemplate<String, String> redisTemplate;
     private final ObjectMapper objectMapper;
     private static final String USER_KEY_PREFIX = "user:";
@@ -27,6 +30,10 @@ public class UserService implements IUserService {
     @Override
     public UserDTO registerUser(UserDTO userDTO) {
         User user = userRepository.save(UserMapper.toEntity(userDTO));
+        
+        // Delegate profile creation to the factory
+        userProfileFactory.createProfiles(user);
+        
         return UserMapper.toUserDTO(user);
     }
 
