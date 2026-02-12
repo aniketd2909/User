@@ -1,9 +1,7 @@
 package org.example.uberend2end.adapter;
 
-import org.example.uberend2end.dtos.RegisterUserDTO;
-import org.example.uberend2end.dtos.UserDTO;
-import org.example.uberend2end.dtos.UserRequestDTO;
-import org.example.uberend2end.dtos.UserResponseDTO;
+import org.example.uberend2end.dtos.*;
+import org.example.uberend2end.entities.Booking;
 import org.example.uberend2end.entities.User;
 
 public class UserMapper {
@@ -12,6 +10,7 @@ public class UserMapper {
         return User.builder()
                 .name(userDTO.getName())
                 .email(userDTO.getEmail())
+                .roles(userDTO.getRoles())
                 .build();
     }
 
@@ -46,6 +45,7 @@ public class UserMapper {
                 .email(registerUserDTO.getEmail())
                 .phoneNumber(registerUserDTO.getPhoneNumber())
                 .password(registerUserDTO.getPassword())
+                .roles(registerUserDTO.getRoles())
                 .build();
     }
 

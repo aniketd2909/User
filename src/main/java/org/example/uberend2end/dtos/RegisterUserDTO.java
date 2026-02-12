@@ -10,6 +10,8 @@ import org.example.uberend2end.entities.Address;
 import org.example.uberend2end.entities.Role;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
+import java.util.Set;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -20,5 +22,6 @@ public class RegisterUserDTO {
     private String email;
     private String password;
     private String phoneNumber;
+    private Set<Role> roles;
 
 }

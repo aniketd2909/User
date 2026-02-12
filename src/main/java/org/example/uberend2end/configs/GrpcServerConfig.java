@@ -18,7 +18,7 @@ public class GrpcServerConfig {
     @Value("${grpc.server.port:9090}")
     private int grpcServerPort;
 
-    private final RideService rideService;
+    private final RideService rideService;// Inject the new service
     private Server server;
 
     @PostConstruct

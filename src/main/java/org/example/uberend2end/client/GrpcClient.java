@@ -1,16 +1,21 @@
 package org.example.uberend2end.client;
 
-import com.example.Uber.RideNotificationRequest;
-import com.example.Uber.RideNotificationResponse;
-import com.example.Uber.RideNotificationServiceGrpc;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import jakarta.annotation.PostConstruct;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.example.Uber.RideNotificationRequest;
+import com.example.Uber.RideNotificationResponse;
+import com.example.Uber.RideNotificationServiceGrpc;
+
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class GrpcClient {
 
     @Value("${grpc.client.port:9091}")
@@ -33,6 +38,7 @@ public class GrpcClient {
     }
 
     public boolean notifyDriversForNewRide(String pickUpLocationLatitude, String pickUpLocationLongitude, Integer bookingId, List<Integer> driverIds) {
+        log.info("notifyDriversForNewRide start: {}", driverIds);
         RideNotificationRequest request = RideNotificationRequest.newBuilder()
                 .setPickUpLocationLatitude(pickUpLocationLatitude)
                 .setPickUpLocationLongitude(pickUpLocationLongitude)

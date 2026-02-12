@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Uber Driver App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .status {
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+      }
+      .connected {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      .disconnected {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      #notifications {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 300px;
+        overflow-y: scroll;
+      }
+      .notification {
+        background: #f8f9fa;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-left: 4px solid #007bff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚖 Driver Dashboard</h1>
+
+      <div>
+        <label>Driver ID:</label>
+        <input
+          type="text"
+          id="driverId"
+          value="1"
+          placeholder="Enter Driver ID" />
+        <button onclick="connect()">Go Online</button>
+        <button onclick="disconnect()">Go Offline</button>
+      </div>
+
+      <div id="status" class="status disconnected">Status: Offline</div>
+
+      <h3>Notifications</h3>
+      <div id="notifications"></div>
+    </div>
+
+    <script>
+      var stompClient = null;
+
+      function connect() {
+        var driverId = document.getElementById("driverId").value;
+        if (!driverId) {
+          alert("Please enter a Driver ID");
+          return;
+        }
+
+        var socket = new SockJS("/ws");
+        stompClient = Stomp.over(socket);
+
+        stompClient.connect(
+          {},
+          function (frame) {
+            setConnected(true);
+            console.log("Connected: " + frame);
+
+            // Subscribe to the driver's specific topic
+            stompClient.subscribe(
+              "/topic/driver/" + driverId,
+              function (notification) {
+                showNotification(notification.body);
+              },
+            );
+          },
+          function (error) {
+            console.error("Connection error: " + error);
+            setConnected(false);
+          },
+        );
+      }
+
+      function disconnect() {
+        if (stompClient !== null) {
+          stompClient.disconnect();
+        }
+        setConnected(false);
+        console.log("Disconnected");
+      }
+
+      function setConnected(connected) {
+        var statusDiv = document.getElementById("status");
+        if (connected) {
+          statusDiv.innerHTML = "Status: 🟢 Online (Listening for rides...)";
+          statusDiv.className = "status connected";
+        } else {
+          statusDiv.innerHTML = "Status: 🔴 Offline";
+          statusDiv.className = "status disconnected";
+        }
+      }
+
+      function showNotification(message) {
+        var notificationsDiv = document.getElementById("notifications");
+        var newNotif = document.createElement("div");
+        newNotif.className = "notification";
+        newNotif.innerHTML =
+          "<b>New Message:</b> " +
+          message +
+          "<br><small>" +
+          new Date().toLocaleTimeString() +
+          "</small>";
+        notificationsDiv.prepend(newNotif);
+      }
+    </script>
+  </body>
+</html>

@@ -29,6 +29,7 @@ public class UserService implements IUserService {
 
     @Override
     public UserDTO registerUser(UserDTO userDTO) {
+        log.info("Registering user with email: {}", userDTO.getRoles());
         User user = userRepository.save(UserMapper.toEntity(userDTO));
         log.info("User {} has been saved", user.getRoles());
         // Delegate profile creation to the factory
