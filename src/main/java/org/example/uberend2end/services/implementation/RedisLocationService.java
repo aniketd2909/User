@@ -18,9 +18,11 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RedisLocationService implements ILocationService {
 
     private static final String DRIVER_GEO_OPS_KEY = "driver:geo"; // represent location of driver entity in redis
@@ -28,14 +30,14 @@ public class RedisLocationService implements ILocationService {
     private final StringRedisTemplate stringRedisTemplate;
 
     @Override
-    public Boolean saveDriverLocation(Integer driverId, Double latitude, Double longitude) {
+    public Boolean saveDriverLocation(String driverId, Double latitude, Double longitude) {
 
         GeoOperations<String, String> geoOperations = stringRedisTemplate.opsForGeo();
 
         geoOperations.add(DRIVER_GEO_OPS_KEY, 
-            new RedisGeoCommands.GeoLocation<>(driverId.toString(), new Point(latitude, longitude))
+            new RedisGeoCommands.GeoLocation<>(driverId, new Point(latitude, longitude))
         );
-        
+        log.info("Driver location saved, {}", driverId);
         return true;
     }
 
@@ -54,9 +56,9 @@ public class RedisLocationService implements ILocationService {
         for(GeoResult<GeoLocation<String>> result : results) {
 
             Point point = geoOperations.position(DRIVER_GEO_OPS_KEY, result.getContent().getName()).get(0); // location of individual driver in redis
-
+            
             DriverLocationDTO driverLocation = DriverLocationDTO.builder()
-            .driverId(Integer.parseInt(result.getContent().getName()))
+            .driverId(result.getContent().getName())
             .latitude(point.getY())
             .longitude(point.getX())
             .build();

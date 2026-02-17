@@ -37,7 +37,7 @@ public class GrpcClient {
         rideNotificationServiceStub = RideNotificationServiceGrpc.newBlockingStub(channel);
     }
 
-    public boolean notifyDriversForNewRide(String pickUpLocationLatitude, String pickUpLocationLongitude, Integer bookingId, List<Integer> driverIds) {
+    public boolean notifyDriversForNewRide(String pickUpLocationLatitude, String pickUpLocationLongitude, String bookingId, List<String> driverIds) {
         log.info("notifyDriversForNewRide start: {}", driverIds);
         RideNotificationRequest request = RideNotificationRequest.newBuilder()
                 .setPickUpLocationLatitude(pickUpLocationLatitude)

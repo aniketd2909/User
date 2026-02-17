@@ -13,6 +13,6 @@ public interface IBookingService {
     // Method to cancel a booking
     void cancelBooking(String bookingId);
 
-    Boolean acceptRide(Long bookingId, Long driverId);
+    Boolean acceptRide(String bookingId, String driverId);
 
 }

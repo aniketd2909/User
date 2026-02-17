@@ -39,6 +39,7 @@ dependencies {
     implementation 'io.grpc:grpc-protobuf:1.60.1'
     implementation 'io.grpc:grpc-stub:1.60.1'
     implementation 'io.grpc:grpc-netty-shaded:1.60.1'
+    implementation 'org.springframework.ai:spring-ai-starter-mcp-server-webmvc:1.1.0'
 
     compileOnly 'org.projectlombok:lombok'
     compileOnly    'javax.annotation:javax.annotation-api:1.3.2'

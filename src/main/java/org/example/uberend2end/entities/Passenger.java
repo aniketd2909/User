@@ -1,9 +1,10 @@
 package org.example.uberend2end.entities;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Document(collection = "passengers")
 @Getter

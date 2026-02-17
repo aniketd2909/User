@@ -42,8 +42,8 @@ public class BookingService implements IBookingService {
             grpcClient.notifyDriversForNewRide(
                     savedBooking.getPickupLocationLatitude() + "",
                     savedBooking.getPickupLocationLongtitude() + "",
-                    savedBooking.hashCode(), // Using hashcode as ID since Proto expects Int
-                    List.of("698baa0116197481f1a56ebd".hashCode())
+                    savedBooking.getId(), // Using hashcode as ID since Proto expects Int
+                    List.of("698baa0116197481f1a56ebd")
             );
         } catch (Exception e) {
             System.err.println("Failed to notify drivers via gRPC: " + e.getMessage());
@@ -67,7 +67,7 @@ public class BookingService implements IBookingService {
     }
 
     @Override
-    public Boolean acceptRide(Long bookingId, Long driverId) {
+    public Boolean acceptRide(String bookingId, String driverId) {
         return true;
     }
 

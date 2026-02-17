@@ -9,8 +9,8 @@ option java_outer_classname = "Ride";
 
 
 message RideAcceptanceRequest {
-  int32 driver_id = 1;
-  int32 booking_id = 2;
+  string driver_id = 1;
+  string booking_id = 2;
 }
 
 message RideAcceptanceResponse {
@@ -29,8 +29,8 @@ service RideNotificationService {
 message RideNotificationRequest {
   string pick_up_location_latitude = 1;
   string pick_up_location_longitude = 2;
-  int32 booking_id = 3;
-  repeated int32 driver_ids = 4;
+  string booking_id = 3;
+  repeated string driver_ids = 4;
 }
 
 message RideNotificationResponse {

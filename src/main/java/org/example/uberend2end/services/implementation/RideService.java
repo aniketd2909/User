@@ -27,10 +27,7 @@ public class RideService extends RideServiceGrpc.RideServiceImplBase {
         rideAcceptanceLock.lock(); // Acquire the lock
         try {
             // Call the BookingService to update the ride with the new driver id.
-            Boolean success = bookingService.acceptRide(
-                    Long.parseLong("" + request.getBookingId()),
-                    Long.parseLong("" + request.getDriverId())
-            );
+            Boolean success = bookingService.acceptRide(request.getBookingId(), request.getDriverId());
             RideAcceptanceResponse response = RideAcceptanceResponse.newBuilder()
                     .setSuccess(success)
                     .build();
