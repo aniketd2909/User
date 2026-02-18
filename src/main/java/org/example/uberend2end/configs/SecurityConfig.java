@@ -20,7 +20,9 @@ public class SecurityConfig {
                                 "/api/users",
                                 "/api/users/{id}",
                                 "/api/bookings/create",
-                                "/ws/**" // Updated to allow all WebSocket sub-paths
+                                "/ws/**", // Updated to allow all WebSocket sub-paths
+                                "/sse",
+                                "/mcp/**"
                                 )
                         .permitAll()
                         .anyRequest()

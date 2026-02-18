@@ -1,15 +1,15 @@
 package org.example.uberend2end.configs;
 
+import java.io.IOException;
+
+import org.example.uberend2end.services.implementation.RideService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.example.uberend2end.services.implementation.RideService;
-import org.springframework.context.annotation.Configuration;
-import io.grpc.Server;
-
-import org.springframework.beans.factory.annotation.Value;
-
-import java.io.IOException;
 
 @Configuration
 @RequiredArgsConstructor
@@ -28,9 +28,6 @@ public class GrpcServerConfig {
                 .addService(rideService)
                 .build()
                 .start();
-
-        System.out.println("gRPC Server started on port " + grpcServerPort);
-
         new Thread(() -> {
             try {
                 if( server != null ) {

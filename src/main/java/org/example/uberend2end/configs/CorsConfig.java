@@ -1,4 +1,4 @@
-package com.example.ubersocket.config;
+package org.example.uberend2end.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

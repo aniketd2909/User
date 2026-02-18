@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "my-spring-server": {
+      "url": "http://localhost:8088/sse",
+      "type": "sse"
+    }
+  }
+}
