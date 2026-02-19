@@ -25,7 +25,6 @@ public class BookingController {
 
     @PostMapping("/create")
     public ResponseEntity<BookingResponseDTO> createBooking(@RequestBody BookingRequestDTO bookingRequestDTO) {
-        log.info("Booking info: {}", bookingRequestDTO);
         // Map DTO to Entity (In a real app, use a Mapper)
         BookingDTO bookingDTO= BookingMapper.toBookingDTO(bookingRequestDTO);
         Booking booking = BookingMapper.toEntity(bookingDTO);
@@ -33,4 +32,5 @@ public class BookingController {
         BookingDTO createdBookingDTO = BookingMapper.toBookingDTO(createdBooking);
         return ResponseEntity.status(201).body(BookingMapper.toBookingResponseDTO(createdBookingDTO));
     }
+
 }
