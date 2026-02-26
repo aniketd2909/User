@@ -35,7 +35,7 @@ public class DriverLocationService {
      */
     public Boolean saveDriverLocation(String driverId, double longitude, double latitude) {
         GeoOperations<String, String> geoOperations = stringRedisTemplate.opsForGeo();
-        geoOperations.add(DRIVER_GEO_OPS_KEY, 
+        geoOperations.add(DRIVER_GEO_OPS_KEY,
             new RedisGeoCommands.GeoLocation<>(driverId, new Point(latitude, longitude))
         );
         return true;
@@ -50,7 +50,7 @@ public class DriverLocationService {
      */
     public List<DriverLocationDTO> findNearbyDrivers(Double latitude, Double longitude, Double radius) {
         GeoOperations<String, String> geoOperations = stringRedisTemplate.opsForGeo();
-        Distance circleRadius = new Distance(radius, Metrics.KILOMETERS);
+        Distance circleRadius = new Distance(radius, Metrics.KILOMETERS); // Radius in kilometers
         Circle circle = new Circle(new Point(latitude, longitude), circleRadius);
         GeoResults<GeoLocation<String>> results = geoOperations.radius(DRIVER_GEO_OPS_KEY, circle); // query redis
 
@@ -58,7 +58,7 @@ public class DriverLocationService {
 
         for(GeoResult<GeoLocation<String>> result : results) {
             Point point = geoOperations.position(DRIVER_GEO_OPS_KEY, result.getContent().getName()).get(0); // location of individual driver in redis
-            DriverLocationDTO driverLocation = DriverLocationDTO.builder()
+            DriverLocationDTO driverLocation = DriverLocationDTO.builder() // Note: Redis returns longitude as X and latitude as Y
             .driverId(result.getContent().getName())
             .latitude(point.getY())
             .longitude(point.getX())

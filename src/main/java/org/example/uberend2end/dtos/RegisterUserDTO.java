@@ -1,16 +1,13 @@
 package org.example.uberend2end.dtos;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import java.util.Set;
+
+import org.example.uberend2end.entities.Role;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.uberend2end.entities.Address;
-import org.example.uberend2end.entities.Role;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
-
-import java.util.Set;
 
 @Data
 @Builder

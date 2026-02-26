@@ -3,12 +3,12 @@ package org.example.uberend2end;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.data.mongodb.config.EnableMongoAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing; // Import for JPA Auditing
 
 import io.github.cdimascio.dotenv.Dotenv;
 
 @SpringBootApplication
-@EnableMongoAuditing
+@EnableJpaAuditing // Enable JPA Auditing if you were using auditing features with MongoDB
 public class UberEnd2EndApplication {
 
     public static void main(String[] args) {

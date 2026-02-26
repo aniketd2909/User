@@ -1,20 +1,33 @@
 package org.example.uberend2end.entities;
 
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Document(collection = "passengers")
+@Entity
+@Table(name = "passengers")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Passenger extends BaseEntity {
 
+    @Column(name = "user_id", nullable = false)
     private String userId; // Decoupled reference to User ID
 
+    @Column
     private Double rating;
 
-    private GeoJsonPoint currentLocation;
+    @Column(name = "current_latitude")
+    private Double currentLatitude;
+
+    @Column(name = "current_longitude")
+    private Double currentLongitude;
 
 }

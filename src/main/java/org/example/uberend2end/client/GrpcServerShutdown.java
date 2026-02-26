@@ -2,12 +2,11 @@ package org.example.uberend2end.client;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.PreDestroy;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import io.grpc.Server;
+import jakarta.annotation.PreDestroy;
 
 @Component
 public class GrpcServerShutdown {

@@ -40,8 +40,8 @@ public class BookingService implements IBookingService {
         // TODO: In real app, find nearby drivers. Here we notify dummy driver IDs [1, 2, 3]
         try {
             grpcClient.notifyDriversForNewRide(
-                    savedBooking.getPickupLocationLatitude() + "",
-                    savedBooking.getPickupLocationLongtitude() + "",
+                    String.valueOf(savedBooking.getPickupLocationLatitude()),
+                    String.valueOf(savedBooking.getPickupLocationLongtitude()),
                     savedBooking.getId(), // Using hashcode as ID since Proto expects Int
                     List.of("698baa0116197481f1a56ebd")
             );

@@ -1,12 +1,11 @@
 package org.example.uberend2end.dtos;
 
+import org.example.uberend2end.entities.BookingStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.uberend2end.entities.BookingStatus;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
-
 
 @Data
 @Builder

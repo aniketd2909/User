@@ -33,7 +33,7 @@ public class RedisLocationService implements ILocationService {
     public Boolean saveDriverLocation(String driverId, Double latitude, Double longitude) {
 
         GeoOperations<String, String> geoOperations = stringRedisTemplate.opsForGeo();
-
+        // Redis GEO commands expect longitude first, then latitude
         geoOperations.add(DRIVER_GEO_OPS_KEY, 
             new RedisGeoCommands.GeoLocation<>(driverId, new Point(latitude, longitude))
         );
@@ -55,7 +55,7 @@ public class RedisLocationService implements ILocationService {
 
         for(GeoResult<GeoLocation<String>> result : results) {
 
-            Point point = geoOperations.position(DRIVER_GEO_OPS_KEY, result.getContent().getName()).get(0); // location of individual driver in redis
+            Point point = geoOperations.position(DRIVER_GEO_OPS_KEY, result.getContent().getName()).get(0); // Redis returns longitude as X and latitude as Y
             
             DriverLocationDTO driverLocation = DriverLocationDTO.builder()
             .driverId(result.getContent().getName())
